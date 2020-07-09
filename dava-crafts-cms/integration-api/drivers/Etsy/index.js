@@ -17,8 +17,6 @@ const createListing = async (data) => {
 
     let oAuthHeader = genAuthHeader(requestData);
 
-    console.log('oauth header: ', oAuthHeader);
-
     fetch(
         queryURL, 
         {
@@ -31,21 +29,22 @@ const createListing = async (data) => {
         }
     )
     .then(res => {
-        console.log('response: ', res);
+        // console.log('response: ', res);
     })
     .catch(e => {console.log("error: ",  e)});
 }
 
 const buildQueryStr = (data) => {
-    let query = ETSY_API_URL + "state="+ TESTING_STATE;
+    // currently static values draft state for testing and only available shipping template
+    let queryStr = ETSY_API_URL + "state="+ TESTING_STATE + "&shipping_template_id=100254567443";
 
     Object.keys(queryModel.attributes).forEach(key => {
         if(typeof(data[key]) !== "undefined") {
-            query += "&" + key.toLowerCase() + "=" + data[key];
+            queryStr += "&" + key.toLowerCase() + "=" + data[key];
         }
     });
-    console.log("query: ", query)
-    return query + "&shipping_template_id=100254567443";
+
+    return queryStr;
 }
 
 formatData = (data) => {
