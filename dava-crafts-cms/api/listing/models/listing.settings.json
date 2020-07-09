@@ -1,0 +1,74 @@
+{
+  "kind": "collectionType",
+  "collectionName": "EtsyListings",
+  "info": {
+    "name": "EtsyListing"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Description": {
+      "type": "richtext"
+    },
+    "Title": {
+      "type": "string"
+    },
+    "Images": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "Quantity": {
+      "type": "integer"
+    },
+    "Price": {
+      "type": "float"
+    },
+    "Taxonomy_Id": {
+      "type": "integer"
+    },
+    "Who_Made": {
+      "type": "enumeration",
+      "enum": [
+        "i_did",
+        "collective",
+        "someone_else"
+      ]
+    },
+    "Is_Supply": {
+      "type": "boolean"
+    },
+    "When_Made": {
+      "type": "enumeration",
+      "enum": [
+        "made_to_order",
+        "2020_2020", 
+        "2010_2019",
+        "2001_2009",
+        "before_2001",
+        "2000_2000", 
+        "1990s",
+        "1980s",
+        "1970s",
+        "1960s",
+        "1950s",
+        "1940s",
+        "1930s",
+        "1920s",
+        "1910s",
+        "1900s",
+        "1800s",
+        "1700s",
+        "before_1700"
+      ]
+    }
+  }
+}

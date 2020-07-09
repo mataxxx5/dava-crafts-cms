@@ -2,48 +2,48 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/restourants",
-      "handler": "restourant.find",
+      "path": "/listings",
+      "handler": "listing.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/restourants/count",
-      "handler": "restourant.count",
+      "path": "/listings/count",
+      "handler": "listing.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/restourants/:id",
-      "handler": "restourant.findOne",
+      "path": "/listings/:id",
+      "handler": "listing.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/restourants",
-      "handler": "restourant.create",
+      "path": "/listings",
+      "handler": "listing.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/restourants/:id",
-      "handler": "restourant.update",
+      "path": "/listings/:id",
+      "handler": "listing.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/restourants/:id",
-      "handler": "restourant.delete",
+      "path": "/listings/:id",
+      "handler": "listing.delete",
       "config": {
         "policies": []
       }
