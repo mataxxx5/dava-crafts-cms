@@ -1,0 +1,88 @@
+{
+  "kind": "collectionType",
+  "collectionName": "etsy_listings",
+  "info": {
+    "name": "EtsyListing"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "default": "Test",
+      "required": true
+    },
+    "Description": {
+      "type": "richtext",
+      "default": "Test",
+      "required": true
+    },
+    "Images": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "Quantity": {
+      "type": "integer",
+      "required": true,
+      "default": 1
+    },
+    "Price": {
+      "type": "float",
+      "default": 0.5,
+      "required": true
+    },
+    "Taxonomy_Id": {
+      "type": "integer",
+      "default": 10,
+      "required": true
+    },
+    "Is_Supply": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "Who_Made": {
+      "type": "enumeration",
+      "enum": [
+        "i_did",
+        "collective",
+        "someone_else"
+      ],
+      "required": true,
+      "default": "i_did"
+    },
+    "When_Made": {
+      "type": "enumeration",
+      "enum": [
+        "made_to_order",
+        "2020_2020",
+        "2010_2019",
+        "2001_2009",
+        "before_2001",
+        "2000_2000",
+        "1990s",
+        "1980s",
+        "1970s",
+        "1960s",
+        "1950s",
+        "1940s",
+        "1930s",
+        "1920s",
+        "1910s",
+        "1900s",
+        "1800s",
+        "1700s",
+        "before_1700"
+      ],
+      "required": true,
+      "default": "made_to_order"
+    }
+  }
+}

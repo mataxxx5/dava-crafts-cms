@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/etsy-listings",
+      "handler": "etsy-listing.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/etsy-listings/count",
+      "handler": "etsy-listing.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/etsy-listings/:id",
+      "handler": "etsy-listing.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/etsy-listings",
+      "handler": "etsy-listing.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/etsy-listings/:id",
+      "handler": "etsy-listing.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/etsy-listings/:id",
+      "handler": "etsy-listing.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
