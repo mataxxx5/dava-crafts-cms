@@ -1,10 +1,14 @@
 const fetch = require('node-fetch');
+const axios = require('axios');
 const formData = require('form-data');
+const fs = require('fs');
 
 const genAuthHeader = require('./oauth');
 const queryModel = require('../../../api/etsy-listing/models/etsy-listing.settings.json');
+const { FILE } = require('dns');
 
 const ETSY_API_URL = "https://openapi.etsy.com/v2/listings?";
+const FILE_DIR = "./public/"
 const TESTING_STATE = "draft"
 
 const createListing = async (data) => {
@@ -23,7 +27,6 @@ const createListing = async (data) => {
         queryURL, 
         {
             method: 'POST',
-            credentials: 'include',
             headers: {
                 'Content-Type' : 'application/x-www-form-urlencoded', 
                 'Authorization' : oAuthHeader
@@ -33,10 +36,10 @@ const createListing = async (data) => {
     .then(res => res.json())
     .then(resJSON => {
         console.log('response: ', resJSON);
-        if(typeof(data.images) !== "undefined") {
+        if(typeof(data.Images) !== "undefined") {
 
             let listingId = resJSON.results[0].listing_id;
-            uploadListingImages(listingId, data.images);
+            uploadListingImages(listingId, data.Images);
         }
 
 
@@ -45,35 +48,35 @@ const createListing = async (data) => {
 }
 
 const uploadListingImages = (listingId, images) => {
-    let queryURL = ETSY_API_URL+ listingId + "/images";
-    
+    let queryURL = "https://openapi.etsy.com/v2/listings/"+ listingId + "/images";
+ 
     images.forEach(image => {
-        console.log("image: ", image);
+        imageForm = new formData();
+        imageForm.append("image", fs.createReadStream(FILE_DIR + image.url));
 
-        // imageForm = new formData();
-        // imageForm.append("image", image);
+        const requestData = {
+            url: queryURL,
+            method: 'POST',
+            data : {}
+        }
 
-        // const requestData = {
-        //     url: queryURL,
-        //     method: 'POST',
-        //     data : imageForm
-        // }  
-
-        // fetch(
-        //     queryURL, 
-        //     {
-        //         method: 'POST',
-        //         credentials: 'include',
-        //         headers: {
-        //             'Content-Type' : 'multipart/form-dataheader',
-        //             ...imageForm.getHeaders(),
-        //             ...genAuthHeader(requestData)
-        //         },
-        //         body: imageForm
-        //     },
-        // )
-
-    }); 
+        fetch(
+            queryURL, 
+            {
+                method: 'POST',
+                body: imageForm,
+                headers: {
+                    "Authorization": genAuthHeader(requestData),
+                    ...imageForm.getHeaders()
+                }
+            },
+        )
+        .then(response => {
+            return response.json();
+        })
+        .then(result => {console.log(result);})
+        .catch(e => {console.log("error: ",  e);});
+    });
 }
 
 const updateListing = () => {
@@ -90,7 +93,7 @@ const buildQueryStr = (data) => {
     let queryStr = ETSY_API_URL + "state="+ TESTING_STATE + "&shipping_template_id=100254567443";
 
     Object.keys(queryModel.attributes).forEach(key => {
-        if(typeof(data[key]) !== "undefined" || data[key] !== "images") {
+        if(typeof(data[key]) !== "undefined" && key !== "Images") {
             queryStr += "&" + key.toLowerCase() + "=" + data[key];
         }
     });
