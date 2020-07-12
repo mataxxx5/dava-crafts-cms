@@ -55,30 +55,6 @@ const createListing = async (data) => {
         return e;
 
     } 
-    
-    // .then(res => res.json())
-    // .then(async resJSON => {
-    //     let status = {};
-    //     console.log('response: ', resJSON);
-    //     status["entry"] = resJSON;
-
-    //     if(typeof(data.Images) !== "undefined") {
-
-    //         let listingId = resJSON.results[0].listing_id;
-    //         status["imageRes"] = await uploadListingImages(listingId, data.Images);
-    //         return  status;
-    //     } else {
-    //         return status;
-    //     }
-
-    // })
-    // .catch(e => {
-    //     let status = {};
-    //     console.log("error: ",  e);
-    //     status["error"] = e;
-
-    //     return status
-    // });
 }
 
 const uploadListingImages = async (listingId, images) => {
