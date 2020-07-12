@@ -6,16 +6,15 @@ const APIS = [
     EtsyAPI
 ];
 
-const createListing = (data) => {
-    // let responseStatuses = [];
-    APIS.forEach(API => {
+const createListing = async (data) => {
+   
+    let apiRes = await APIS.map(async API => {
         let formattedData = API.formatData(data);
-        API.createListing(formattedData);
-        // let status = API.createListing(formattedData);
-        // responseStatuses.append(status);
+        let res = await API.createListing(formattedData);
+        return res;
     });
 
-    // return responseStatuses
+    return await Promise.all(apiRes);
 }
 
 
