@@ -1,0 +1,17 @@
+{
+  "kind": "collectionType",
+  "collectionName": "etsy_listing_images",
+  "info": {
+    "name": "EtsyListingImages"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "media_references": {
+      "type": "json",
+      "required": true
+    }
+  }
+}

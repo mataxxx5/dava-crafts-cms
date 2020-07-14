@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/etsy-listing-images",
+      "handler": "etsy-listing-images.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/etsy-listing-images/count",
+      "handler": "etsy-listing-images.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/etsy-listing-images/:id",
+      "handler": "etsy-listing-images.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/etsy-listing-images",
+      "handler": "etsy-listing-images.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/etsy-listing-images/:id",
+      "handler": "etsy-listing-images.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/etsy-listing-images/:id",
+      "handler": "etsy-listing-images.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

@@ -83,6 +83,9 @@
       ],
       "required": true,
       "default": "made_to_order"
+    },
+    "etsy_listing_image": {
+      "model": "etsy-listing-images"
     }
   }
 }
