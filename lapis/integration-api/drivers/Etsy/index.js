@@ -94,6 +94,8 @@ const uploadListingImages = async (listingId, images) => {
 }
 
 const updateListing = () => {
+    // for testing make state inactive so listings aren't published
+    // 
     // stub 
 }
 
